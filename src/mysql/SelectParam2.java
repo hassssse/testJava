@@ -1,7 +1,10 @@
 package mysql;
 
 import java.sql.*;
-
+/*
+ * 商品テーブル中の，単価が 150円以下，または，
+ * 5000円以上の商品の商品名，単価，仕入先名を表示する．
+ */
 public class SelectParam2 {
   public static void main(String[] args) {
     Connection conn = null;
@@ -13,7 +16,7 @@ public class SelectParam2 {
                                    "FROM item, suppl " +
                                    "WHERE suppl.suppl_c=item.suppl_c " +
                                    "AND price<=? OR price>=?");
-      stmt.setInt(1, 500);
+      stmt.setInt(1, 150);
       stmt.setInt(2, 5000);
       resultSet = stmt.executeQuery();
       while (resultSet.next()) {

@@ -2,7 +2,9 @@ package mysql;
 
 import java.sql.*;
 import java.util.Scanner;
-
+/*
+ * 検索条件とする単価と仕入先コードを，ユーザに入力させる.
+ */
 public class SelectInput1 {
   public static void main(String[] args) {
     Scanner stdIn = new Scanner(System.in);

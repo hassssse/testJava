@@ -1,7 +1,10 @@
 package mysql;
 
 import java.sql.*;
-
+/*
+ * 商品テーブル中の，単価が 500 円未満で，かつ，
+ * 仕入先コードが 4 の商品の商品名，単価，仕入先コードを表示する．
+ */
 public class SelectParam1 {
   public static void main(String[] args) {
     Connection conn = null;

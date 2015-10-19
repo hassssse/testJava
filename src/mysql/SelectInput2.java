@@ -2,7 +2,9 @@ package mysql;
 
 import java.sql.*;
 import java.util.Scanner;
-
+/*
+ * 検索条件とする単価の上限と下限を，ユーザに入力させる.
+ */
 public class SelectInput2 {
   public static void main(String[] args) {
     Scanner stdIn = new Scanner(System.in);
