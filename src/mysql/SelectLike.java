@@ -15,12 +15,12 @@ public class SelectLike {
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet resultSet = null;
+
+    String sql = "SELECT item_nam, price, suppl_nam FROM item, suppl " +
+                 "WHERE suppl.suppl_c=item.suppl_c AND suppl_address LIKE ?";
     try {
       conn = ConnectUtilMy.connectDatabase();
-      stmt = conn.prepareStatement("SELECT item_nam, price, suppl_nam " +
-                                   "FROM item, suppl " +
-                                   "WHERE suppl.suppl_c=item.suppl_c " +
-                                   "AND suppl_address LIKE ?");
+      stmt = conn.prepareStatement(sql);
       stmt.setString(1, "%"+address+"%");
       resultSet = stmt.executeQuery();
       while (resultSet.next()) {
