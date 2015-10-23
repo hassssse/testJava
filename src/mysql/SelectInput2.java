@@ -1,6 +1,9 @@
 package mysql;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 /*
  * 検索条件とする単価の上限と下限を，ユーザに入力させる.
@@ -10,21 +13,21 @@ public class SelectInput2 {
     Scanner stdIn = new Scanner(System.in);
     System.out.println("検索条件を入力");
     System.out.print("単価の上限:");
-    int priceUpper = stdIn.nextInt();
+    double priceUpper = stdIn.nextDouble();
     System.out.print("単価の下限:");
-    int priceLower = stdIn.nextInt();
-    
+    double priceLower = stdIn.nextDouble();
+
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet resultSet = null;
+
+    String sql = "SELECT item_nam, price, suppl_nam FROM item, suppl " +
+                 "WHERE suppl.suppl_c=item.suppl_c AND price<=? AND price>=?";
     try {
       conn = ConnectUtilMy.connectDatabase();
-      stmt = conn.prepareStatement("SELECT item_nam, price, suppl_nam " +
-                                   "FROM item, suppl " +
-                                   "WHERE suppl.suppl_c=item.suppl_c " +
-                                   "AND price<=? AND price>=?");
-      stmt.setInt(1, priceUpper);
-      stmt.setInt(2, priceLower);
+      stmt = conn.prepareStatement(sql);
+      stmt.setDouble(1, priceUpper);
+      stmt.setDouble(2, priceLower);
       resultSet = stmt.executeQuery();
       while (resultSet.next()) {
         System.out.println("商品名:" + resultSet.getString("item_nam"));
