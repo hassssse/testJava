@@ -1,6 +1,9 @@
 package mysql;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /*
  * 商品テーブル中の，単価が 150円以下，または，
  * 5000円以上の商品の商品名，単価，仕入先名を表示する．
@@ -10,14 +13,13 @@ public class SelectParam2 {
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet resultSet = null;
+    String sql = "SELECT item_nam, price, suppl_nam FROM item, suppl " +
+                 "WHERE suppl.suppl_c=item.suppl_c AND (price<=? OR price>=?)";
     try {
       conn = ConnectUtilMy.connectDatabase();
-      stmt = conn.prepareStatement("SELECT item_nam, price, suppl_nam " +
-                                   "FROM item, suppl " +
-                                   "WHERE suppl.suppl_c=item.suppl_c " +
-                                   "AND price<=? OR price>=?");
-      stmt.setInt(1, 150);
-      stmt.setInt(2, 5000);
+      stmt = conn.prepareStatement(sql);
+      stmt.setDouble(1, 150.0);
+      stmt.setDouble(2, 5000.0);
       resultSet = stmt.executeQuery();
       while (resultSet.next()) {
         System.out.println("商品名:" + resultSet.getString("item_nam"));

@@ -1,6 +1,9 @@
 package mysql;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 /*
  * 検索条件とする単価と仕入先コードを，ユーザに入力させる.
@@ -10,18 +13,18 @@ public class SelectInput1 {
     Scanner stdIn = new Scanner(System.in);
     System.out.println("検索条件を入力");
     System.out.print("単価:");
-    int itemPrice = stdIn.nextInt();
+    double itemPrice = stdIn.nextDouble();
     System.out.print("仕入先コード:");
     int supplCode = stdIn.nextInt();
-    
+
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet resultSet = null;
     try {
       conn = ConnectUtilMy.connectDatabase();
       stmt = conn.prepareStatement("SELECT item_nam, price, suppl_c FROM item " +
-                                   "WHERE price=? AND suppl_c=?");
-      stmt.setInt(1, itemPrice);
+                                   "WHERE price<? AND suppl_c=?");
+      stmt.setDouble(1, itemPrice);
       stmt.setInt(2, supplCode);
       resultSet = stmt.executeQuery();
       while (resultSet.next()) {
