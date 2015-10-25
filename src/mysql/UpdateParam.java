@@ -32,25 +32,19 @@ public class UpdateParam {
     }
     finally {
       try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
+        if (resultSet != null) resultSet.close();
       }
       catch (SQLException ex) {
         ex.printStackTrace();
       }
       try {
-        if (stmt != null) {
-          stmt.close();
-        }
+        if (stmt != null) stmt.close();
       }
       catch (SQLException ex) {
         ex.printStackTrace();
       }
       try {
-        if (conn != null) {
-          conn.close();
-        }
+        if (conn != null) conn.close();
       }
       catch (SQLException ex) {
         ex.printStackTrace();
