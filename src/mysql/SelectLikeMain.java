@@ -13,8 +13,7 @@ public class SelectLikeMain {
     System.out.println("検索したい住所を入力（一部一致でも検索可）");
     String address = stdIn.next();
     SelectLikeSub sub = new SelectLikeSub(address);
-    ArrayList<Result> subList = new ArrayList<Result>();
-    subList = sub.resultList;
+    ArrayList<Result> subList = sub.getResultList();
     
     for (Result result : subList) {
       System.out.println("商品名:"+result.getItemName());
@@ -22,7 +21,5 @@ public class SelectLikeMain {
       System.out.println("仕入先名:"+result.getSupplName());
       System.out.println();
     }
-
-
   }
 }
