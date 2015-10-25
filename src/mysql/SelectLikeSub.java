@@ -9,15 +9,15 @@ import java.util.ArrayList;
  * 入出力の方式に関知しない
  */
 public class SelectLikeSub {
-  //ArrayList<ResultSet> resultList = new ArrayList<ResultSet>();
-  ArrayList<Result> resultList = new ArrayList<Result>();
-  Result rslt = null;
-  static Connection conn;
-  static PreparedStatement stmt;
-  static ResultSet resultSet;
-  static String sql;
+  private ArrayList<Result> resultList = new ArrayList<Result>();
+  private Result rslt;
+  private Connection conn;
+  private PreparedStatement stmt;
+  private ResultSet resultSet;
+  private String sql;
 
   public SelectLikeSub(String address) {
+    rslt = null;
     conn = null;
     stmt = null;
     resultSet = null;
@@ -36,7 +36,6 @@ public class SelectLikeSub {
         rslt.setSupplName(resultSet.getString("suppl_nam"));
         resultList.add(rslt);
       }
-
 
     } catch (SQLException ex) {
       System.out.println("エラーコード:" + ex.getErrorCode());
@@ -63,4 +62,6 @@ public class SelectLikeSub {
       }
     }
   }
+  
+  public ArrayList<Result> getResultList(){return resultList;}
 }
