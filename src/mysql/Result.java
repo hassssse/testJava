@@ -5,10 +5,6 @@ public class Result {
   private double itemPrice;
   private String supplName;
 
-  public Result() {
-    super();
-  }
-  
   public String getItemName() {return itemName;}
   public double getItemPrice() {return itemPrice;}
   public String getSupplName() {return supplName;}
