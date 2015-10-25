@@ -10,23 +10,31 @@ import java.util.ArrayList;
  */
 public class SelectLikeSub {
   //ArrayList<ResultSet> resultList = new ArrayList<ResultSet>();
-  ArrayList<OneResult> resultList = new ArrayList<OneResult>();
-  OneResult aResult = null;
+  ArrayList<Result> resultList = new ArrayList<Result>();
+  Result rslt = null;
+  static Connection conn;
+  static PreparedStatement stmt;
+  static ResultSet resultSet;
+  static String sql;
 
   public SelectLikeSub(String address) {
-    Connection conn = null;
-    PreparedStatement stmt = null;
-    ResultSet resultSet = null;
-    String sql = "SELECT item_nam, price, suppl_nam FROM item, suppl " +
+    conn = null;
+    stmt = null;
+    resultSet = null;
+    sql = "SELECT item_nam, price, suppl_nam FROM item, suppl " +
         "WHERE suppl.suppl_c=item.suppl_c AND suppl_address LIKE ?";
     try {
       conn = ConnectUtilMy.connectDatabase();
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, "%"+address+"%");
       resultSet = stmt.executeQuery();
+      
       while (resultSet.next()) {
-        aResult = new OneResult(resultSet);
-        resultList.add(aResult);
+        rslt = new Result();
+        rslt.setItemName(resultSet.getString("item_nam"));
+        rslt.setItemPrice(resultSet.getDouble("price"));
+        rslt.setSupplName(resultSet.getString("suppl_nam"));
+        resultList.add(rslt);
       }
 
 
@@ -36,25 +44,19 @@ public class SelectLikeSub {
       ex.printStackTrace();
     } finally {
       try {
-        if (resultSet != null) {
-          resultSet.close();
-        }
+        if (resultSet != null) resultSet.close();
       }
       catch (SQLException ex) {
         ex.printStackTrace();
       }
       try {
-        if (stmt != null) {
-          stmt.close();
-        }
+        if (stmt != null) stmt.close();
       }
       catch (SQLException ex) {
         ex.printStackTrace();
       }
       try {
-        if (conn != null) {
-          conn.close();
-        }
+        if (conn != null) conn.close();
       }
       catch (SQLException ex) {
         ex.printStackTrace();
