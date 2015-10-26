@@ -5,6 +5,7 @@ public class Result {
   private double itemPrice;
   private String supplName;
 
+  // getter, setter
   public String getItemName() {return itemName;}
   public double getItemPrice() {return itemPrice;}
   public String getSupplName() {return supplName;}
