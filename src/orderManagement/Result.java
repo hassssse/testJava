@@ -1,4 +1,4 @@
-package mysql;
+package orderManagement;
 
 public class Result {
   private String itemName;
