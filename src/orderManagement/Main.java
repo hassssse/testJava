@@ -3,7 +3,7 @@ package orderManagement;
 import java.util.Scanner;
 
 public class Main {
-  public static void main(String[] args) {
+  public static void main(String[] args)  {
     Scanner stdIn = new Scanner(System.in);
     int num = -1;
     while(num != 0) {
@@ -23,6 +23,7 @@ public class Main {
         break;
       case 2:
         // 登録
+        System.out.println();
         break;
       case 3:
         new DeleteIO();
@@ -31,7 +32,7 @@ public class Main {
       case 0:
         break;
       default:
-        System.out.println("データ入力が不正です");
+        Common.alertFraudNumber();
       }
     }
   }

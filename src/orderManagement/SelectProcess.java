@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class SelectProcess {
   private ArrayList<SelectOrderResult> orderResultList = new ArrayList<SelectOrderResult>();
   private Connection conn;
-  private PreparedStatement stmt, stmt2;
+  private PreparedStatement stmt;
   private ResultSet resultSet, resultSet2;
   private String sql1, sql2;
 
   public SelectProcess(String customName) {
     conn = null;
-    stmt = stmt2 = null;
+    stmt = null;
     resultSet = resultSet2 = null;
     sql1 = "SELECT order_no, order_date, custom.custom_c, custom_nam, sales.sales_c, sales_nam"
          + " FROM order_title, custom, sales"
@@ -43,9 +43,9 @@ public class SelectProcess {
         orderResult.setSalesCode(resultSet.getString("sales_c"));
         orderResultList.add(orderResult);
 
-        stmt2 = conn.prepareStatement(sql2);
-        stmt2.setInt(1, orderResult.getOrderNo());
-        resultSet2 = stmt2.executeQuery();
+        stmt = conn.prepareStatement(sql2);
+        stmt.setInt(1, orderResult.getOrderNo());
+        resultSet2 = stmt.executeQuery();
         while (resultSet2.next()) {
           SelectOrderItemResult itemResult = new SelectOrderItemResult();
           itemResult.setItemCode(resultSet2.getInt("item_c"));
@@ -62,6 +62,12 @@ public class SelectProcess {
     } finally {
       try {
         if (resultSet != null) resultSet.close();
+      }
+      catch (SQLException ex) {
+        ex.printStackTrace();
+      }
+      try {
+        if (resultSet2 != null) resultSet2.close();
       }
       catch (SQLException ex) {
         ex.printStackTrace();

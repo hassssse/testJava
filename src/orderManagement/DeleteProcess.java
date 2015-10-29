@@ -20,7 +20,7 @@ public class DeleteProcess {
     stmt = null;
     resultSet = null;
     resultCount = 0;
-    deleted = false;
+    setDeleted(false);
     sql1 = "DELETE FROM order_detail WHERE order_no = ?";
     sql2 = "DELETE FROM order_title WHERE order_no = ?";
     
