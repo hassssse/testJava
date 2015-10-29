@@ -17,7 +17,8 @@ public class Main {
 
       switch(num) {
       case 1:
-        // 検索
+        new SelectIO();
+        System.out.println();
         break;
       case 2:
         // 登録
@@ -28,7 +29,7 @@ public class Main {
       case 0:
         break;
       default:
-        System.out.println("不正");
+        System.out.println("データ入力が不正です");
       }
     }
   }
