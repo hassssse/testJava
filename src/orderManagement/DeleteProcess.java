@@ -12,11 +12,15 @@ public class DeleteProcess {
   private PreparedStatement stmt;
   private ResultSet resultSet;
   private String sql1, sql2;
+  private int resultCount;
+  private boolean deleted;
 
   public DeleteProcess(int orderNo) {
     conn = null;
     stmt = null;
     resultSet = null;
+    resultCount = 0;
+    deleted = false;
     sql1 = "DELETE FROM order_detail WHERE order_no = ?";
     sql2 = "DELETE FROM order_title WHERE order_no = ?";
     
@@ -27,7 +31,8 @@ public class DeleteProcess {
       stmt.executeUpdate();
       stmt = conn.prepareStatement(sql2);
       stmt.setInt(1, orderNo);
-      stmt.executeUpdate();
+      resultCount = stmt.executeUpdate();
+      if (resultCount!=0) setDeleted(true);
       
     } catch (SQLException ex) {
       System.out.println("エラーコード:" + ex.getErrorCode());
@@ -54,4 +59,9 @@ public class DeleteProcess {
       }
     }
   }
+  
+  public int getResultCount() {return resultCount;}
+  public boolean isDeleted() {return deleted;}
+  public void setDeleted(boolean deleted){this.deleted = deleted;};
+  
 }

@@ -10,18 +10,7 @@ public class DeleteIO {
     int orderNo = stdIn.nextInt();
     DeleteProcess delete = new DeleteProcess(orderNo);
 
-    /*for (SelectOrderResult orderResult : orderList) {
-      System.out.println("受注No.:"+orderResult.getOrderNo());
-      System.out.println("受注日付:"+orderResult.getOrderDate());
-      System.out.println("顧客名:"+orderResult.getCustomName() + "("+orderResult.getCustomCode()+")");
-      System.out.println("担当者名:"+orderResult.getSalesName() + "("+orderResult.getSalesCode()+")");
-      System.out.println("受注商品一覧");
-      for (SelectOrderItemResult itemResult : orderResult.getItemList()) {
-        System.out.println(itemResult.getItemCode()
-                          +"\t"+itemResult.getItemName()
-                          +" : "+itemResult.getItemQuantity()+"個");
-      }
-      System.out.println();
-    }*/
+    if (delete.isDeleted()) System.out.println("受注を削除しました");
+    else System.out.println("該当する受注No.は存在しません");
   }
 }
