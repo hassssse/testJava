@@ -29,7 +29,7 @@ public class SelectProcess {
          + " AND order_no = ?";
 
     try {
-      conn = ConnectDatabase.connectDatabase();
+      conn = ConnectDB.connectDatabase();
       stmt = conn.prepareStatement(sql1);
       stmt.setString(1, "%"+customName+"%");
       resultSet = stmt.executeQuery();

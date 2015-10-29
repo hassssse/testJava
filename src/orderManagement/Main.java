@@ -14,6 +14,7 @@ public class Main {
       System.out.println("0 終了");
       System.out.print("番号:");
       num = stdIn.nextInt();
+      System.out.println();
 
       switch(num) {
       case 1:
@@ -24,7 +25,8 @@ public class Main {
         // 登録
         break;
       case 3:
-        // 削除
+        new DeleteIO();
+        System.out.println();
         break;
       case 0:
         break;

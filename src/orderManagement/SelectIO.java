@@ -7,6 +7,7 @@ public class SelectIO {
   public SelectIO() {
     Scanner stdIn = new Scanner(System.in);
     System.out.println("顧客名（の一部）を入力してください");
+    System.out.print("顧客名:");
     String customName = stdIn.next();
     SelectProcess select = new SelectProcess(customName);
     ArrayList<SelectOrderResult> orderList = select.getOrderResultList();
