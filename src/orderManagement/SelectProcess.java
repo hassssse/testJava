@@ -62,26 +62,22 @@ public class SelectProcess {
     } finally {
       try {
         if (resultSet != null) resultSet.close();
-      }
-      catch (SQLException ex) {
+      } catch (SQLException ex) {
         ex.printStackTrace();
       }
       try {
         if (resultSet2 != null) resultSet2.close();
-      }
-      catch (SQLException ex) {
+      } catch (SQLException ex) {
         ex.printStackTrace();
       }
       try {
         if (stmt != null) stmt.close();
-      }
-      catch (SQLException ex) {
+      } catch (SQLException ex) {
         ex.printStackTrace();
       }
       try {
         if (conn != null) conn.close();
-      }
-      catch (SQLException ex) {
+      } catch (SQLException ex) {
         ex.printStackTrace();
       }
     }

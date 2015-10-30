@@ -32,7 +32,7 @@ public class Main {
       case 0:
         break;
       default:
-        Common.alertFraudNumber();
+        Alert.fraudNumber();
       }
     }
   }

@@ -28,6 +28,6 @@ public class SelectIO {
         }
         System.out.println();
       }
-    } else Common.alertEmptySelect();
+    } else Alert.emptySelect();
   }
 }
