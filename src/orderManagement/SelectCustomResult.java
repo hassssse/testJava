@@ -5,8 +5,8 @@ public class SelectCustomResult {
   private String customName;
 
   public SelectCustomResult() {
-    this.customCode=0;
-    this.customName="noname";
+    this.customCode = 0;
+    this.customName = "noname";
   }
 
   public SelectCustomResult(int customCode, String customName) {

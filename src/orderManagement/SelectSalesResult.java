@@ -4,8 +4,8 @@ public class SelectSalesResult {
   private String salesCode, salesName;
 
   public SelectSalesResult() {
-    this.salesCode="00";
-    this.salesName="noname";
+    this.salesCode = "00";
+    this.salesName = "noname";
   }
 
   public SelectSalesResult(String salesCode, String salesName) {

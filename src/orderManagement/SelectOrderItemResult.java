@@ -22,6 +22,4 @@ public class SelectOrderItemResult {
   public void setItemQuantity(int itemQuantity) {
     this.itemQuantity = itemQuantity;
   }
-
-
 }
