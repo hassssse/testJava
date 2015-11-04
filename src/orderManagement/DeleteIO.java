@@ -10,6 +10,10 @@ public class DeleteIO {
     int orderNo = stdIn.nextInt();
     if (orderNo<0) Alert.fraudNumber();
     DeleteProcess delete = new DeleteProcess(orderNo);
-    Alert.resultDelete(delete.isDeleted());     
+    if (delete.hasDeleted()) {
+      System.out.println("受注を削除しました");
+    } else {
+      System.out.println("該当する受注No.は存在しません");
+    }
   }
 }

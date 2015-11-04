@@ -22,7 +22,7 @@ public class Main {
         System.out.println();
         break;
       case 2:
-        // 登録
+        //new InsertIO();
         System.out.println();
         break;
       case 3:
@@ -31,6 +31,9 @@ public class Main {
         break;
       case 0:
         break;
+      case 123:
+        System.out.println("試験用");
+
       default:
         Alert.fraudNumber();
       }
