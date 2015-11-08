@@ -21,7 +21,6 @@ public class Main {
       case 2:
         System.out.println();
         //new InsertIO();
-        System.out.println();
         break;
       case 3:
         System.out.println();

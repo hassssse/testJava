@@ -21,7 +21,5 @@ public class SelectItemResult {
 
   public String getItemName() {
     return itemName;
-  }
-  
-  
+  } 
 }

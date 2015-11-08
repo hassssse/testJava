@@ -26,7 +26,7 @@ public class SelectProcess {
     conn = ConnectDB.connectDatabase();
   }
   
-  // getter,setter
+  // getter
   public ArrayList<SelectOrderResult> getOrderResultList() {
     return orderResultList;
   }

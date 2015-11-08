@@ -1,10 +1,7 @@
 package orderManagement;
 
-import java.util.Scanner;
-
 public class DeleteIO {
   public DeleteIO() {
-    Scanner stdIn = new Scanner(System.in);
     System.out.println("削除する受注No.を入力してください");
     System.out.print("受注No.:");
     int orderNumber = Input.convertToInteger();

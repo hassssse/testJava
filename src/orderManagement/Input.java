@@ -13,9 +13,9 @@ public class Input {
     return number;
   }
   
-  private static boolean isNumber(String val) {
+  private static boolean isNumber(String value) {
     try {
-      Integer.parseInt(val);
+      Integer.parseInt(value);
       return true;
     } catch (NumberFormatException nfex) {
       return false;
