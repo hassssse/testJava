@@ -1,14 +1,12 @@
 package orderManagement;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class SelectIO {
   public SelectIO() {
-    Scanner stdIn = new Scanner(System.in);
     System.out.println("顧客名（の一部）を入力してください");
     System.out.print("顧客名:");
-    String customName = stdIn.next();
+    String customName = Input.characterString();
     System.out.println();
     
     SelectProcess select = new SelectProcess();
@@ -37,7 +35,7 @@ public class SelectIO {
         System.out.println();
       }
     } else {
-      Alert.emptySelect();
+      System.out.println("該当する顧客の受注は存在しません");
       System.out.println();
     }
   }
