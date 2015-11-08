@@ -11,7 +11,7 @@ public class Main {
       System.out.println("3 受注削除");
       System.out.println("0 終了");
       System.out.print("番号:");
-      num = Input.constrainInteger();
+      num = Input.convertToInteger();
 
       switch(num) {
       case 1:
@@ -34,7 +34,8 @@ public class Main {
         new Temp();
         break;
       default:
-        Alert.fraudNumber();
+        Alert.incorrectNumber();
+        System.out.println();
         break;
       }
     }

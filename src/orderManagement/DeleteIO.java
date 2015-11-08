@@ -7,9 +7,9 @@ public class DeleteIO {
     Scanner stdIn = new Scanner(System.in);
     System.out.println("削除する受注No.を入力してください");
     System.out.print("受注No.:");
-    int orderNumber = stdIn.nextInt();
+    int orderNumber = Input.convertToInteger();
     if (orderNumber<0) {
-      Alert.fraudNumber();
+      Alert.incorrectNumber();
     }
     DeleteProcess delete = new DeleteProcess();
     delete.deleteOrderByOrderNumber(orderNumber);

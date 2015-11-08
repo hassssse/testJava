@@ -3,7 +3,7 @@ package orderManagement;
 import java.util.Scanner;
 
 public class Input {
-  static int constrainInteger() {
+  static int convertToInteger() {
     Scanner stdIn = new Scanner(System.in);
     String input = stdIn.next();
     int number = -1;

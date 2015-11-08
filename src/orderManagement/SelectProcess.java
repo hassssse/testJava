@@ -84,7 +84,7 @@ public class SelectProcess {
     System.out.println("エラーコード:" + e.getErrorCode());
     System.out.println("SQL状態:" + e.getSQLState());
     e.printStackTrace();
-    Alert.fraudNumber();
+    Alert.incorrectNumber();
   }
   
   //検索のメソッド(受注検索用)

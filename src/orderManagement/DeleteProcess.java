@@ -65,7 +65,7 @@ public class DeleteProcess {
     System.out.println("エラーコード:" + e.getErrorCode());
     System.out.println("SQL状態:" + e.getSQLState());
     e.printStackTrace();
-    Alert.fraudNumber();
+    Alert.incorrectNumber();
   }
   
   public void deleteOrderByOrderNumber(int orderNumber) {
