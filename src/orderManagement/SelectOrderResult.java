@@ -52,15 +52,15 @@ public class SelectOrderResult {
     return salesName;
   }
 
-  public ArrayList<SelectOrderItemResult> getItemListre() {
+  public ArrayList<SelectOrderItemResult> getOrderItemList() {
     return itemList;
   }
   
-  public void addItemListValue(SelectOrderItemResult itemResult) {
+  public void addOrderItemResult(SelectOrderItemResult itemResult) {
     itemList.add(itemResult);
   }
   
-  public SelectOrderItemResult getItemListValue(int index) {
+  public SelectOrderItemResult getOrderItemValue(int index) {
     return itemList.get(index);
   }
 }
