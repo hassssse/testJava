@@ -17,7 +17,7 @@ public class DeleteProcess {
     conn = ConnectDB.connectDatabase();
   }
   
-  // getter, setter
+  // getter
   public int getResultCount() {
     return resultCount;
   }

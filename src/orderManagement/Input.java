@@ -5,12 +5,18 @@ import java.util.Scanner;
 public class Input {
   static int convertToInteger() {
     Scanner stdIn = new Scanner(System.in);
-    String input = stdIn.next();
+    String line = stdIn.next();
     int number = -1;
-    if (isNumber(input)) {
-      number = Integer.parseInt(input);
+    if (isNumber(line)) {
+      number = Integer.parseInt(line);
     }
     return number;
+  }
+  
+  static String characterString() {
+    Scanner stdIn = new Scanner(System.in);
+    String line = stdIn.next();
+    return line;
   }
   
   private static boolean isNumber(String value) {
