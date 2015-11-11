@@ -12,13 +12,13 @@ public class Input {
     }
     return number;
   }
-  
+
   static String characterString() {
     Scanner stdIn = new Scanner(System.in);
     String line = stdIn.next();
     return line;
   }
-  
+
   private static boolean isNumber(String value) {
     try {
       Integer.parseInt(value);

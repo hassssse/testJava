@@ -20,29 +20,29 @@ public class SelectProcess {
     = new ArrayList<SelectSalesResult>();
   private ArrayList<SelectItemResult> itemResultList
     = new ArrayList<SelectItemResult>();
-  
+
   public SelectProcess() {
     init();
     conn = ConnectDB.connectDatabase();
   }
-  
+
   // getter
   public ArrayList<SelectOrderResult> getOrderResultList() {
     return orderResultList;
   }
-  
+
   public ArrayList<SelectOrderItemResult> getOrderItemResultList() {
     return orderItemResultList;
   }
-  
+
   public ArrayList<SelectCustomResult> getCustomResultList() {
     return customResultList;
   }
-  
+
   public ArrayList<SelectSalesResult> getSalesResultList() {
     return salesResultList;
   }
-  
+
   public ArrayList<SelectItemResult> getItemResultList() {
     return itemResultList;
   }
@@ -53,7 +53,7 @@ public class SelectProcess {
     stmt = null;
     rslt = null;
   }
-  
+
   // クローズ
   public void close() {
     try {
@@ -78,7 +78,7 @@ public class SelectProcess {
       sqlError(e);
     }
   }
-  
+
   // sqlの例外処理
   public void sqlError(SQLException e) {
     System.out.println("エラーコード:" + e.getErrorCode());
@@ -86,7 +86,7 @@ public class SelectProcess {
     e.printStackTrace();
     Alert.incorrectNumber();
   }
-  
+
   //検索のメソッド(受注検索用)
   //顧客名(の一部)から検索
   public void selectOrderListByCustomName(String searchCustomName) {
@@ -121,7 +121,7 @@ public class SelectProcess {
       close();
     }
   }
-  
+
   //受注No．から検索(受注商品一覧)
   public void selectItemListByOrderNumber(SelectOrderResult orderResult) {
     String sql;
@@ -147,7 +147,7 @@ public class SelectProcess {
       close();
     }
   }
-  
+
   public void selectItemListByOrderNumber(int orderNumber) {
     String sql;
     sql = "SELECT item.item_c, item_nam, quantity"
@@ -175,7 +175,7 @@ public class SelectProcess {
   }
 
   //検索のメソッド（受注登録用）
-  //顧客の一覧 
+  //顧客の一覧
   public void selectCustomListAll() {
     String sql;
     sql = "SELECT custom_c, custom_nam"
@@ -196,7 +196,7 @@ public class SelectProcess {
       close();
     }
   }
-  
+
   //担当者の一覧
   public void selectSalesListAll() {
     String sql;
@@ -218,11 +218,11 @@ public class SelectProcess {
       close();
     }
   }
-  
+
   //商品の一覧
   public void selectItemListAll() {
     String sql;
-    sql = "SELECT item_c, item_nam"
+    sql = "SELECT item_c, item_nam, price"
         + " FROM item ORDER BY item_nam";
     try {
       stmt = conn.prepareStatement(sql);
@@ -230,9 +230,52 @@ public class SelectProcess {
       while (rslt.next()) {
         int itemCode = rslt.getInt("item_c");
         String itemName = rslt.getString("item_nam");
+        int itemPrice = rslt.getInt("price");
         SelectItemResult itemResult
-          = new SelectItemResult(itemCode, itemName);
+          = new SelectItemResult(itemCode, itemName, itemPrice);
         itemResultList.add(itemResult);
+      }
+    } catch(SQLException e) {
+      sqlError(e);
+    } finally {
+      close();
+    }
+  }
+
+  // 検索のメソッド（受注削除用）
+  // select文を実行して、検索された件数を数値で返す
+  public int countOrderByOrderNumber(int orderNumber) {
+    int count=0;
+    String sql;
+    sql = "SELECT order_no"
+        + " FROM order_title"
+        + " WHERE order_no = ?";
+    try {
+      stmt = conn.prepareStatement(sql);
+      stmt.setInt(1, orderNumber);
+      rslt = stmt.executeQuery();
+      while (rslt.next()) {
+        count++;
+      }
+    } catch(SQLException e) {
+      sqlError(e);
+    } finally {
+      close();
+    }
+    return count;
+  }
+
+  // 受注Noを一覧で表示する（確認用）
+  public void showOrderListAll() {
+    String sql;
+    sql = "SELECT order_no FROM order_title";
+    try {
+      stmt = conn.prepareStatement(sql);
+      rslt = stmt.executeQuery();
+      int count=0;
+      while (rslt.next()) {
+        count++;
+        System.out.println(count+rslt.getInt("order_no"));
       }
     } catch(SQLException e) {
       sqlError(e);

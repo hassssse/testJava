@@ -18,20 +18,24 @@ public class Main {
         System.out.println();
         new SelectIO();
         break;
+
       case 2:
         System.out.println();
-        //new InsertIO();
+        new InsertIO();
         break;
+
       case 3:
         System.out.println();
         new DeleteIO();
         break;
+
       case 0:
         break;
       case 123:
         System.out.println("試験用");
         new Temp();
         break;
+
       default:
         Alert.incorrectNumber();
         System.out.println();
