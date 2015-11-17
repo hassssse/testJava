@@ -81,10 +81,7 @@ public class SelectProcess {
 
   // sqlの例外処理
   public void sqlError(SQLException e) {
-    System.out.println("エラーコード:" + e.getErrorCode());
-    System.out.println("SQL状態:" + e.getSQLState());
-    e.printStackTrace();
-    Alert.incorrectNumber();
+    Alert.sqlError(e);
   }
 
   //検索のメソッド(受注検索用)
@@ -113,7 +110,6 @@ public class SelectProcess {
           = new SelectOrderResult(orderNumber, customCode, orderDate,
                                   customName, salesCode, salesName);
         orderResultList.add(orderResult);
-        //selectItemListByOrderNumber(orderResult);
       }
     } catch(SQLException e) {
       sqlError(e);
@@ -265,6 +261,7 @@ public class SelectProcess {
     return count;
   }
 
+  /*
   // 受注Noを一覧で表示する（確認用）
   public void showOrderListAll() {
     String sql;
@@ -282,5 +279,5 @@ public class SelectProcess {
     } finally {
       close();
     }
-  }
+  }*/
 }

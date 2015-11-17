@@ -56,10 +56,7 @@ public class DeleteProcess {
 
   // sqlの例外処理
   public void sqlError(SQLException e) {
-    System.out.println("エラーコード:" + e.getErrorCode());
-    System.out.println("SQL状態:" + e.getSQLState());
-    e.printStackTrace();
-    Alert.incorrectNumber();
+    Alert.sqlError(e);
   }
 
   // 受注Noによって受注削除
