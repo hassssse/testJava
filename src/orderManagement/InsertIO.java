@@ -123,6 +123,7 @@ public class InsertIO {
       insert.insertOrder(cal, customnum, salesnum, itemnum,
                          quantity, total, tax, bill);
 
+      System.out.println("受注を登録しました");
       System.out.println();
     } catch (IllegalArgumentException e) {
       Alert.incorrectNumber();
