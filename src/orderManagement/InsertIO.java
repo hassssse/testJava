@@ -7,7 +7,7 @@ public class InsertIO {
   public InsertIO() {
     SelectProcess select;
     Calendar cal = Calendar.getInstance();
-    
+
     // 受注年月日の入力と例外処理
     try {
       System.out.println("受注年を入力してください");
@@ -45,7 +45,8 @@ public class InsertIO {
       System.out.print("番号:");
       int indexCustom = Input.convertToInteger();
       int customnum = customList.get(indexCustom-1).getCustomCode();
-  
+      System.out.println();
+
       System.out.println("担当者を選択してください");
       // 担当者の一覧表示
       select = new SelectProcess();
@@ -61,7 +62,7 @@ public class InsertIO {
       System.out.print("番号:");
       int indexSales = Input.convertToInteger();
       String salesnum = salesList.get(indexSales-1).getSalesCode();
-      
+
       System.out.println("商品を選択してください");
       // 商品一覧表示
       select = new SelectProcess();
@@ -82,36 +83,46 @@ public class InsertIO {
         }
       }
       // ここまで
-  
+
       ArrayList<Integer> itemnum = new ArrayList<Integer>();
       ArrayList<Integer> quantity = new ArrayList<Integer>();
       boolean flag = true;
       int num, num2;
       double total = 0.0, tax = 0.0, bill = 0.0;
-  
+
       while (flag) {
-        System.out.print("商品の一連番号（0の入力で選択終了):");
-        num = Input.convertToInteger();
-        if (num == 0) {
-          break;
+        try {
+          System.out.print("商品の一連番号（0の入力で選択終了):");
+          num = Input.convertToInteger();
+          if (num == 0) {
+            break;
+          }
+          int itemCode = itemList.get(num-1).getItemCode();
+          itemnum.add(itemCode);
+          num2=-1;
+          while (num2==-1) {
+            System.out.print("数量:");
+            num2 = Input.convertToInteger();
+            if (num2==-1) {
+              Alert.incorrectNumber();
+            }
+          }
+          quantity.add(num2);
+          int price = itemList.get(num-1).getItemPrice();
+          total += price * num2;
+        } catch (IndexOutOfBoundsException e) {
+          Alert.incorrectNumber();
+          System.out.println();
         }
-        int itemCode = itemList.get(num-1).getItemCode();
-        itemnum.add(itemCode);
-        System.out.print("数量:");
-        num2 = Input.convertToInteger();
-        quantity.add(num2);
-  
-        int price = itemList.get(num-1).getItemPrice();
-        total += price * num2;
       }
-  
+
       tax = Math.floor(total * 0.08);
       bill = total + tax;
-  
+
       InsertProcess insert = new InsertProcess();
       insert.insertOrder(cal, customnum, salesnum, itemnum,
                          quantity, total, tax, bill);
-      
+
       System.out.println();
     } catch (IllegalArgumentException e) {
       Alert.incorrectNumber();

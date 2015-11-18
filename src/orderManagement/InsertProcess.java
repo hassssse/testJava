@@ -5,9 +5,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class InsertProcess {
 	private Connection conn;
@@ -65,7 +66,6 @@ public class InsertProcess {
 		try{
 			stmt = conn.prepareStatement(sql1, stmt.RETURN_GENERATED_KEYS);
 			Date datecal = new java.sql.Date(cal.getTime().getTime());
-			//stmt.setInt(1, 0);
 			stmt.setDate(1, datecal);
 			stmt.setInt(2, customnum);
 			stmt.setString(3, salesnum);
@@ -73,8 +73,7 @@ public class InsertProcess {
 			stmt.setDouble(5, salestax);
 			stmt.setDouble(6, bill);
 			stmt.execute();
-			//stmt = conn.prepareStatement("SELECT MAX(order_no) FROM order_title;");
-			
+
 			ResultSet orderno = stmt.getGeneratedKeys();	// 最新のオーダーナンバーの値
 			orderno.next();
 			stmt = conn.prepareStatement(sql2);
@@ -84,8 +83,10 @@ public class InsertProcess {
 				stmt.setInt(3, quantity.get(i));
 				stmt.executeUpdate();
 			}
+		}catch(MySQLIntegrityConstraintViolationException e){
+			Alert.sqlIntegrityConstraintViolation(e);
 		}catch(SQLException e){
-			sqlError(e);
+		  sqlError(e);
 		}finally{
 			close();
 		}

@@ -31,10 +31,6 @@ public class Main {
 
       case 0:
         break;
-      case 123:
-        System.out.println("試験用");
-        new Temp();
-        break;
 
       default:
         Alert.incorrectNumber();
